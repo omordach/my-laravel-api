@@ -48,8 +48,8 @@ jobs:
 #          background: true
 #          command: ./vendor/laravel/dusk/bin/chromedriver-linux --port=9515
       - run: ./vendor/bin/phpmd resources ansi cleancode,codesize,controversial,design,naming,unusedcode
-      - run: ./vendor/bin/phpcs resources --report-full --standard=PEAR
-      - run: ./vendor/bin/phpcbf resources --report-full --standard=PEAR
+#      - run: ./vendor/bin/phpcs resources --report-full --standard=PEAR
+#      - run: ./vendor/bin/phpcbf resources --report-full --standard=PEAR
       - run: ./vendor/bin/phpcpd resources --min-lines=40
       - run: ./vendor/bin/phpunit --log-junit tests/_output
 #      - run: php artisan dusk
