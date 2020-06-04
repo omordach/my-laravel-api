@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  test:
+  build:
     docker:
 #      - image: edbizarro/gitlab-ci-pipeline-php:7.2
       - image: circleci/php:7.2-fpm-stretch-node-browsers
@@ -44,6 +44,8 @@ jobs:
 #      - run: npm run prod
 #      - run: php artisan migrate --seed
 #      - run: php artisan storage:link
+  test:
+      steps:
 #      - run:
 #          background: true
 #          command: php artisan serve
@@ -58,12 +60,14 @@ jobs:
 #      - run: php artisan dusk
       - run: php security-checker.phar security:check composer.lock
       - store_test_results:
-          path: tests/_output
+          path: tests/
       - store_artifacts:
-          path: tests/_output
+          path: tests/
       
 workflows:
   version: 2 
+  
   deploy:
     jobs:
+      - build
       - test
