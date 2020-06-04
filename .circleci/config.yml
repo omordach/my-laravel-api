@@ -41,14 +41,14 @@ jobs:
 #      - run: npm run prod
 #      - run: php artisan migrate --seed
 #      - run: php artisan storage:link
-      - run:
-          background: true
-          command: php artisan serve
-      - run:
-          background: true
-          command: ./vendor/laravel/dusk/bin/chromedriver-linux --port=9515
+#      - run:
+#          background: true
+#          command: php artisan serve
+#      - run:
+#          background: true
+#          command: ./vendor/laravel/dusk/bin/chromedriver-linux --port=9515
       - run: ./vendor/bin/phpunit
-      - run: php artisan dusk
+#      - run: php artisan dusk
 workflows:
   version: 2 
   deploy:
