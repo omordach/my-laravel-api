@@ -13,6 +13,7 @@ jobs:
       - checkout
       # Install Google Chrome
       - run: sudo apt-get update -y
+      - run: sudo apt-get install -y phpmd php-codesniffer phpcpd
       - run: sudo apt-get install unzip xvfb libxi6 libgconf-2-4 libnss3 wget -yqq
       - run: wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
       - run: sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
@@ -47,8 +48,14 @@ jobs:
 #      - run:
 #          background: true
 #          command: ./vendor/laravel/dusk/bin/chromedriver-linux --port=9515
+      - run: phpmd resources ansi cleancode,codesize,controversial,design,naming,unusedcode
+      - run: phpcs resources --report-full --standard=PEAR
+      - run: phpcbf resources --report-full --standard=PEAR
+      - run: phpcpd resources --min-lines=40
       - run: ./vendor/bin/phpunit
 #      - run: php artisan dusk
+      - run: php security-checker.phar security:check composer.lock
+      
 workflows:
   version: 2 
   deploy:
