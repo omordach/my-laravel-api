@@ -47,17 +47,17 @@ jobs:
 #      - run:
 #          background: true
 #          command: ./vendor/laravel/dusk/bin/chromedriver-linux --port=9515
-      - run: phpmd resources ansi cleancode,codesize,controversial,design,naming,unusedcode
-      - run: phpcs resources --report-full --standard=PEAR
-      - run: phpcbf resources --report-full --standard=PEAR
-      - run: phpcpd resources --min-lines=40
-      - run: ./vendor/bin/phpunit
+      - run: ./vendor/bin/phpmd resources ansi cleancode,codesize,controversial,design,naming,unusedcode
+      - run: ./vendor/bin/phpcs resources --report-full --standard=PEAR
+      - run: ./vendor/bin/phpcbf resources --report-full --standard=PEAR
+      - run: ./vendor/bin/phpcpd resources --min-lines=40
+      - run: ./vendor/bin/phpunit --log-junit tests/_output
 #      - run: php artisan dusk
       - run: php security-checker.phar security:check composer.lock
       - store_test_results:
-          path: tests/
+          path: tests/_output
       - store_artifacts:
-          path: tests/
+          path: tests/_output
       
 workflows:
   version: 2 
