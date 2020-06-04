@@ -42,16 +42,16 @@ jobs:
 #      - run: npm run prod
 #      - run: php artisan migrate --seed
 #      - run: php artisan storage:link
-      - run:
-          background: true
-          command: php artisan serve
+#      - run:
+#          background: true
+#          command: php artisan serve
 #      - run:
 #          background: true
 #          command: ./vendor/laravel/dusk/bin/chromedriver-linux --port=9515
-      - run: phpmd resources ansi cleancode,codesize,controversial,design,naming,unusedcode
-      - run: phpcs resources --report-full --standard=PEAR
-      - run: phpcbf resources --report-full --standard=PEAR
-      - run: phpcpd resources --min-lines=40
+#      - run: phpmd resources ansi cleancode,codesize,controversial,design,naming,unusedcode
+#      - run: phpcs resources --report-full --standard=PEAR
+#      - run: phpcbf resources --report-full --standard=PEAR
+#      - run: phpcpd resources --min-lines=40
       - run: ./vendor/bin/phpunit
 #      - run: php artisan dusk
       - run: php security-checker.phar security:check composer.lock
