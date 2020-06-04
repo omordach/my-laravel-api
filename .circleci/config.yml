@@ -40,7 +40,7 @@ jobs:
           key: node-{{ checksum "package.json" }}
 #      - run: npm run prod
 #      - run: php artisan migrate --seed
-      - run: php artisan storage:link
+#      - run: php artisan storage:link
       - run:
           background: true
           command: php artisan serve
