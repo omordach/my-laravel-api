@@ -2,8 +2,10 @@ version: 2
 jobs:
   test:
     docker:
-#      - image: circleci/php:7.2-fpm-stretch-node-browsers
-#      - image: circleci/mysql:8
+#      - image: edbizarro/gitlab-ci-pipeline-php:7.2
+      - image: circleci/php:7.2-fpm-stretch-node-browsers
+#      - image: circleci/mysql:5.7
+      - image: circleci/mysql:8
         environment:
           MYSQL_DATABASE: "test"
           MYSQL_ROOT_PASSWORD: "secret"
