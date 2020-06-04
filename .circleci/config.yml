@@ -9,7 +9,7 @@ jobs:
           MYSQL_ROOT_PASSWORD: "secret"
     
     working_directory: /var/www/html
-steps:
+    steps:
       - checkout
       # Install Google Chrome
       - run: sudo apt-get update -y
