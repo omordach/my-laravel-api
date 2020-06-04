@@ -2,9 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-#      - image: edbizarro/gitlab-ci-pipeline-php:7.2
       - image: circleci/php:7.2-fpm-stretch-node-browsers
-#      - image: circleci/mysql:5.7
       - image: circleci/mysql:8
         environment:
           MYSQL_DATABASE: "test"
@@ -15,7 +13,7 @@ jobs:
       - checkout
       # Install Google Chrome
       - run: sudo apt-get update -y
-      # run: sudo apt-get install -y phpmd php-codesniffer phpcpd
+      - run: sudo apt-get install -y phpmd php-codesniffer phpcpd
       - run: sudo apt-get install unzip xvfb libxi6 libgconf-2-4 libnss3 wget -yqq
       - run: wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
       - run: sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
@@ -41,21 +39,21 @@ jobs:
           paths:
             - ./node_modules
           key: node-{{ checksum "package.json" }}
-#      - run: npm run prod
+      - run: npm run prod
 #      - run: php artisan migrate --seed
-#      - run: php artisan storage:link
-#      - run:
-#          background: true
-#          command: php artisan serve
-#      - run:
-#          background: true
-#          command: ./vendor/laravel/dusk/bin/chromedriver-linux --port=9515
-#      - run: phpmd resources ansi cleancode,codesize,controversial,design,naming,unusedcode
-#      - run: phpcs resources --report-full --standard=PEAR
-#      - run: phpcbf resources --report-full --standard=PEAR
-#      - run: phpcpd resources --min-lines=40
+      - run: php artisan storage:link
+      - run:
+          background: true
+          command: php artisan serve
+      - run:
+          background: true
+          command: ./vendor/laravel/dusk/bin/chromedriver-linux --port=9515
+      - run: phpmd resources ansi cleancode,codesize,controversial,design,naming,unusedcode
+      - run: phpcs resources --report-full --standard=PEAR
+      - run: phpcbf resources --report-full --standard=PEAR
+      - run: phpcpd resources --min-lines=40
       - run: ./vendor/bin/phpunit
-#      - run: php artisan dusk
+      - run: php artisan dusk
       - run: php security-checker.phar security:check composer.lock
       - store_test_results:
           path: tests/
