@@ -38,7 +38,7 @@ jobs:
           paths:
             - ./node_modules
           key: node-{{ checksum "package.json" }}
-      - run: npm run prod
+#      - run: npm run prod
 #      - run: php artisan migrate --seed
       - run: php artisan storage:link
       - run:
